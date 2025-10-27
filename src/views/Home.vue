@@ -29,7 +29,10 @@ axios({
   url: '/api/home/getTableData',
   method: 'get',
 }).then((res) => {
-  console.log(res)
+  if (res.data.code === 200) {
+    console.log(res.data.data.tableData)
+    tableData.value = res.data.data.tableData
+  }
 })
 </script>
 
