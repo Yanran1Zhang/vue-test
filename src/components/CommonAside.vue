@@ -1,5 +1,5 @@
 <template>
-  <el-aside :width="width" height="100%">
+  <el-aside :width="width" style="height: 100vh;">
     <el-menu
       background-color="#545c64"
       text-color="#fff"
@@ -92,14 +92,19 @@ const width = computed(() => (store.state.isCollapse ? '64px' : '180px'))
 }
 .el-menu {
   border-right: none;
+  margin: 0;
+  padding: 0;
   h3 {
     line-height: 48px;
     color: #fff;
     text-align: center;
+    margin: 0;
   }
 }
 .el-aside {
-  height: 100%;
+  height: 100vh;
   background-color: #545c64;
+  margin: 0;
+  padding: 0;
 }
 </style>

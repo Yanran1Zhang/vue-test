@@ -42,6 +42,9 @@ const handleCollpase = () => {
   width: 100%;
   height: 100%;
   background-color: #333;
+  margin: 0;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 .icons {
   width: 20px;

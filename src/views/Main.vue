@@ -4,25 +4,26 @@ import CommonHeader from '@/components/CommonHeader.vue'
 </script>
 
 <template>
-  <div class="common-layout">
-    <el-container class="lay-container">
-      <!--自定义左侧的组件-->
-      <common-aside />
-      <el-container>
-        <el-header class="el-header">
-          <common-header />
-        </el-header>
-        <el-main class="right-main">
-          <router-view></router-view>
-        </el-main>
-      </el-container>
+  <el-container class="lay-container">
+    <!--自定义左侧的组件-->
+    <common-aside />
+    <el-container>
+      <el-header class="el-header" style="padding: 0; height: 60px;">
+        <common-header />
+      </el-header>
+      <el-main class="right-main">
+        <router-view></router-view>
+      </el-main>
     </el-container>
-  </div>
+  </el-container>
 </template>
 
 <style lang="less" scoped>
-.common-layout {
-  height: 100%;
+.lay-container {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 .icons {
   width: 18px;
@@ -38,7 +39,24 @@ import CommonHeader from '@/components/CommonHeader.vue'
   }
 }
 .el-aside {
-  height: 100%;
+  height: 100vh;
   background-color: #545c64;
+  margin: 0;
+  padding: 0;
+}
+.el-container {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+.el-header {
+  margin: 0;
+  padding: 0;
+}
+.right-main {
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
 }
 </style>
