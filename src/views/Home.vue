@@ -1,38 +1,34 @@
 <script setup>
-import { ref } from 'vue'
-import axios from 'axios'
+import { ref, getCurrentInstance, onMounted } from 'vue'
+const { proxy } = getCurrentInstance()
 const getImageUrl = (user) => {
   return new URL(`../assets/images/${user}.png`, import.meta.url).href
 }
-const tableData = ref([
-  {
-    name: 'Java',
-    todayBuy: 100,
-    monthBuy: 200,
-    totalBuy: 300,
-  },
-  {
-    name: 'Python',
-    todayBuy: 100,
-    monthBuy: 200,
-    totalBuy: 300,
-  },
-])
-
+const tableData = ref([])
+const countData = ref([])
 const tableLabel = ref({
   name: '课程',
   todayBuy: '今日购买',
   monthBuy: '本月购买',
   totalBuy: '总购买',
 })
-axios({
-  url: '/api/home/getTableData',
-  method: 'get',
-}).then((res) => {
-  if (res.data.code === 200) {
-    console.log(res.data.data.tableData)
-    tableData.value = res.data.data.tableData
-  }
+
+// axios({
+//   url: '/api/home/getTableData',
+//   method: 'get',
+// }).then((res) => {
+//   if (res.data.code === 200) {
+//     console.log(res.data.data.tableData)
+//     tableData.value = res.data.data.tableData
+//   }
+// })
+const getTableData = async () => {
+  const data = await proxy.$api.getTableData()
+  console.log(data)
+  tableData.value = data.tableData
+}
+onMounted(() => {
+  getTableData()
 })
 </script>
 
