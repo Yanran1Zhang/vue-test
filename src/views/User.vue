@@ -6,16 +6,22 @@ const handleClick = () => {
 }
 const { proxy } = getCurrentInstance()
 const getUserData = async () => {
-  let data = await proxy.$api.getUserData()
+  let data = await proxy.$api.getUserData(config)
   console.log(data)
   // 格式化数据，将性别数字转换为文字
   if (data && data.list) {
-    tableData.value = data.list.map(item => ({
+    tableData.value = data.list.map((item) => ({
       ...item,
-      sex: item.sex === 0 ? '女' : '男'
+      sex: item.sex === 0 ? '女' : '男',
     }))
   }
 }
+const config = reactive({
+  name: '',
+})
+const fromInline = reactive({
+  keyword: '',
+})
 onMounted(() => {
   getUserData()
 })
@@ -46,18 +52,22 @@ const tableLable = reactive([
 onMounted(() => {
   getUserData()
 })
+const handleSearch = () => {
+  config.name = formInline.keyword
+  getUserData()
+}
 </script>
 
 <template>
   <div>
     <div class="user-header">
       <el-button type="primary"> 新增 </el-button>
-      <el-form :inline="true">
+      <el-form :inline="true" :model="fromInline">
         <el-form-item label="请输入">
-          <el-input placeholder="请输入用户名"></el-input>
+          <el-input placeholder="请输入用户名" v-model="fromInline.keyword"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary"> 搜索 </el-button>
+          <el-button type="primary" @click="handleSearch"> 搜索 </el-button>
         </el-form-item>
       </el-form>
     </div>
