@@ -17,15 +17,15 @@ const tableLabel = ref({
   totalBuy: '总购买',
 })
 
-// axios({
-//   url: '/api/home/getTableData',
-//   method: 'get',
-// }).then((res) => {
-//   if (res.data.code === 200) {
-//     console.log(res.data.data.tableData)
-//     tableData.value = res.data.data.tableData
-//   }
-// })
+axios({
+  url: '/api/home/getTableData',
+  method: 'get',
+}).then((res) => {
+  if (res.data.code === 200) {
+    console.log(res.data.data.tableData)
+    tableData.value = res.data.data.tableData
+  }
+})
 
 //这个是折线图和柱状图 两个图表共用的公共配置
 const xOptions = reactive({
